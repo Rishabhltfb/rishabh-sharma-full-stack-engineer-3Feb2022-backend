@@ -6,17 +6,18 @@ import {
 } from "./utils/error-handling";
 import morganMiddleware from "./config/morgan-middleware";
 import logger from "./config/logger";
+import connectDB from "./config/db";
 
 const app = express();
+if (process.env.NODE_ENV !== "test") {
+    connectDB();
+}
 const { PORT } = process.env;
 
 app.enable("trust proxy");
 app.use(morganMiddleware);
 app.use(express.json());
 
-// app.get("/", (req, res) => {
-//     res.send("Hey Rishabh");
-// });
 try {
     app.listen(PORT || 8080, () => {
         logger.info("Server INIT", `Listening on PORT: ${PORT}`);
