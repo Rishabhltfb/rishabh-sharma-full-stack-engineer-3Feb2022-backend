@@ -16,7 +16,10 @@ router.get(
         let result;
         if (name) {
             logger.info("Find By name: " + name);
-            result = await RestaurantModel.find({ restaurantName: name });
+            var nameRegex = new RegExp(String(name));
+            result = await RestaurantModel.find({
+                restaurantName: { $regex: nameRegex },
+            });
         } else {
             result = await RestaurantModel.find();
         }
