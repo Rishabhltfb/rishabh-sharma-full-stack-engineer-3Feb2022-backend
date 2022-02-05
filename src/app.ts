@@ -23,7 +23,9 @@ try {
         logger.info("Server INIT", `Listening on PORT: ${PORT}`);
         logger.info(`Running in ${process.env.NODE_ENV} environment`);
     });
-} catch (error: any) {}
+} catch (error: any) {
+    logger.error(`Server SHUTDOWN`, error.message, error);
+}
 
 app.use("/api/v1", require("./routes"));
 

@@ -16,6 +16,6 @@ router.get("/test", (req: Request, res: Response) =>
 );
 
 // router.use("/auth", require("./auth.routes"));
-// router.use("/restaurent", require("./restaurent.routes"));
+router.use("/restaurant", require("./restaurant.routes"));
 
 module.exports = router;

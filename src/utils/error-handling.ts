@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from "express";
-// import logger from "../config/logger";
+import logger from "../config/logger";
 import Errors from "../enums/errors";
 import ResponseAdapter from "./response-adapter";
 
@@ -34,7 +34,7 @@ export function GenericExceptionHandler(
     // eslint-disable-next-line no-unused-vars
     next: NextFunction
 ) {
-    // logger.error(err);
+    logger.error(err);
     const error = err;
     const errCode = getErrorCode(err);
     if (errCode === 401) {
