@@ -9,6 +9,7 @@ const router = Router();
 const responseAdapter = new ResponseAdapter();
 const restaurantService = new RestaurantService();
 
+//Endpoint for fetching all the restaurant data
 router.get(
     "/all",
     expressAsyncHandler(async (req: Request, res: Response) => {
@@ -22,11 +23,12 @@ router.get(
     })
 );
 
+//Endpoint for creating restaurants data
 router.post(
     "",
     expressAsyncHandler(async (req: Request, res: Response) => {
         const restaurantBody: Restaurant = req.body;
-        await RestaurantModel.create(restaurantBody);
+        await restaurantService.createRestaurant(restaurantBody);
         return res.send(
             responseAdapter.sendSuccessResponse(
                 "Restaurant successfully created",

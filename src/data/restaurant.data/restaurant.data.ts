@@ -24,6 +24,14 @@ export default class RestaurantDAO {
         }
     }
 
+    async createRestaurant(restaurantBody: Restaurant): Promise<void> {
+        try {
+            await RestaurantModel.create(restaurantBody);
+        } catch (err) {
+            throw err;
+        }
+    }
+
     async getRestaurantByName(name: string): Promise<Array<Restaurant>> {
         try {
             var nameRegex = new RegExp(String(name));

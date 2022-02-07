@@ -25,7 +25,6 @@ router.get(
 router.get(
     "/day",
     expressAsyncHandler(async (req: Request, res: Response) => {
-        logger.info("Inside filter for day");
         const day = String(req.query.day);
         const openingTime = Number(req.query.openingTime ?? 0);
         const closingTime = Number(req.query.closingTime ?? 2359);

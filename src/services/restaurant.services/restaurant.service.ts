@@ -11,4 +11,8 @@ export default class RestaurantService {
     getAllRestaurants(): Promise<Array<Restaurant>> {
         return this.restaurantDAO.getAllRestaurants();
     }
+
+    createRestaurant(restaurantBody: Restaurant): Promise<void> {
+        return this.restaurantDAO.createRestaurant(restaurantBody);
+    }
 }
