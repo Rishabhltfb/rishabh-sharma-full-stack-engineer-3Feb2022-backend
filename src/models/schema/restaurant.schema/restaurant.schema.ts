@@ -17,11 +17,11 @@ const restaurantSchema = new mongoose.Schema<Restaurant>({
             openingTime: Number,
             closingTime: Number,
         },
-        Weds: {
+        Wed: {
             openingTime: Number,
             closingTime: Number,
         },
-        Thurs: {
+        Thu: {
             openingTime: Number,
             closingTime: Number,
         },
@@ -37,6 +37,9 @@ const restaurantSchema = new mongoose.Schema<Restaurant>({
             openingTime: Number,
             closingTime: Number,
         },
+    },
+    time: {
+        type: String,
     },
 });
 

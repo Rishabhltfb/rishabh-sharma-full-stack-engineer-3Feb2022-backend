@@ -27,4 +27,8 @@ function connectDB() {
     });
 }
 
+export function getDbConnection() {
+    return db;
+}
+
 export default connectDB;
