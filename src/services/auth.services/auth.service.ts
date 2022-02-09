@@ -1,4 +1,5 @@
 import Errors from "../../enums/errors";
+import * as bcrypt from "bcryptjs";
 import UserProfileService from "../user.services/user.service";
 import GenericError from "../../models/dto/generic/generic-error";
 import TokenUtils from "../../utils/token-utils";
@@ -15,8 +16,8 @@ export default class AuthService {
     async signIn(
         email: string,
         name: string,
-        password: string,
-        ipAddress: string
+        ipAddress: string,
+        password: string
     ): Promise<AuthResponse> {
         const passwordHash = await this.tokenUtils.createTokenHash(password);
         let user: User = await this.userProfileService.getUserByEmail(email);
@@ -29,7 +30,8 @@ export default class AuthService {
             };
             user = await this.userProfileService.createUser(newUser);
         } else {
-            if (user.passwordHash !== passwordHash) {
+            const isMatch = await bcrypt.compare(password, user.passwordHash);
+            if (!isMatch) {
                 throw new GenericError(Errors.INCORRECT_CREDENTIALS_ERR, 401);
             }
         }

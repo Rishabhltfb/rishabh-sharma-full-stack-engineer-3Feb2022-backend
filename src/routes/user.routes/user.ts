@@ -13,7 +13,7 @@ const responseAdapter = new ResponseAdapter();
 // TODO: If someone is getting someone else profile data. Some data must be hidden.
 router.get(
     "",
-    passport.authenticateAll,
+    passport.authenticateUser,
     expressAsyncHandler(async (req: Request, res: Response) => {
         let id = req.query.id || "";
         const user: AuthTokenPayload = req.user as AuthTokenPayload;

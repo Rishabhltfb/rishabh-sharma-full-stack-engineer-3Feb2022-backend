@@ -58,6 +58,22 @@ router.put(
 );
 
 router.put(
+    "/revoke",
+    passport.authenticateAll,
+    expressAsyncHandler(async (req: Request, res: Response) => {
+        const user = req.user as AuthTokenPayload;
+        const refreshToken = req.headers["x-access-token"]?.toString() || "";
+        const ip =
+            req.headers["x-forwarded-for"]?.toString() ||
+            req.socket.remoteAddress ||
+            req.ip ||
+            "";
+        await refreshTokenService.revokeRefreshToken(refreshToken, ip, user);
+        return res.send(responseAdapter.sendSuccessResponse("Success", null));
+    })
+);
+
+router.put(
     "/revoke-all",
     passport.authenticateAll,
     expressAsyncHandler(async (req: Request, res: Response) => {

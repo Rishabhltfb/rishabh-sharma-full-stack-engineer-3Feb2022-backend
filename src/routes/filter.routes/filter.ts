@@ -1,8 +1,7 @@
-import express, { Request, Response, Router } from "express";
+import { Request, Response, Router } from "express";
 import expressAsyncHandler from "express-async-handler";
-import logger from "../../config/logger";
+import passport from "../../config/passport";
 import Errors from "../../enums/errors";
-import RestaurantModel from "../../models/schema/restaurant.schema/restaurant.schema";
 import Restaurant from "../../models/types/restaurant.types/restaurant.type";
 import FilterService from "../../services/filter.services/filter.service";
 import ResponseAdapter from "../../utils/response-adapter";
@@ -13,6 +12,7 @@ const filterService = new FilterService();
 
 router.get(
     "/name",
+    passport.authenticateUser,
     expressAsyncHandler(async (req: Request, res: Response) => {
         const name: string = String(req.query.name);
 
@@ -24,6 +24,7 @@ router.get(
 
 router.get(
     "/day",
+    passport.authenticateUser,
     expressAsyncHandler(async (req: Request, res: Response) => {
         const day = String(req.query.day);
         const openingTime = Number(req.query.openingTime ?? 0);

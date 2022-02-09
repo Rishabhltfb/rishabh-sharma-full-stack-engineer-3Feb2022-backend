@@ -7,6 +7,7 @@ import {
 import morganMiddleware from "./config/morgan-middleware";
 import logger from "./config/logger";
 import connectDB from "./config/db";
+import passport from "./config/passport";
 
 const app = express();
 if (process.env.NODE_ENV !== "test") {
@@ -17,6 +18,15 @@ const { PORT } = process.env;
 app.enable("trust proxy");
 app.use(morganMiddleware);
 app.use(express.json());
+
+app.use(
+    express.urlencoded({
+        extended: true,
+    })
+);
+
+// AUTH MIDDLEWARE
+app.use(passport.initialize());
 
 try {
     app.listen(PORT || 8080, () => {
