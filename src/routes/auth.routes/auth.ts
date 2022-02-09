@@ -17,7 +17,6 @@ router.post(
             req.socket.remoteAddress ||
             req.ip ||
             "";
-        logger.debug("SignIn Endpoint Hit");
 
         const response = await authService.signIn(email, name, ip, password);
         return res

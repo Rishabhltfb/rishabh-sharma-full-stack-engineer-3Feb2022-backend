@@ -13,6 +13,7 @@ const restaurantService = new RestaurantService();
 //Endpoint for fetching all the restaurant data
 router.get(
     "/all",
+    passport.authenticateAll,
     expressAsyncHandler(async (req: Request, res: Response) => {
         let result = await restaurantService.getAllRestaurants();
         return res.send(

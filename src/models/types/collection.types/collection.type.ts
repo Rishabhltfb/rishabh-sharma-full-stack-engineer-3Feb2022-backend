@@ -5,7 +5,7 @@ export default interface Collection {
     readonly _id?: Types.ObjectId;
     readonly userId: Types.ObjectId;
     name: String;
-    restautant: Array<Restaurant>;
+    restautants: Array<Restaurant>;
     readonly createdAt?: Date;
     readonly updatedAt?: Date;
 }
