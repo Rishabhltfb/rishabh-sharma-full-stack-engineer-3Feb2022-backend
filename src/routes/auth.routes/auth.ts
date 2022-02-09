@@ -12,7 +12,6 @@ router.post(
     "/signin",
     expressAsyncHandler(async (req: Request, res: Response) => {
         const { email, name, password } = req.body;
-
         const ip =
             req.headers["x-forwarded-for"]?.toString() ||
             req.socket.remoteAddress ||
