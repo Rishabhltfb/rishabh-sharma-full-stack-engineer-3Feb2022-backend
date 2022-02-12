@@ -1,17 +1,22 @@
 /* eslint-disable no-await-in-loop */
-import { Mongoose } from "mongoose";
+import { Mongoose, Types } from "mongoose";
 import Errors from "../../enums/errors";
 import Collection from "../../models/types/collection.types/collection.type";
 import CollectionModel from "../../models/schema/collection.schema/collection.schema";
 import GenericError from "../../models/dto/generic/generic-error";
 import Restaurant from "../../models/types/restaurant.types/restaurant.type";
+import logger from "../../config/logger";
 
 const mongoose = new Mongoose();
 
 export default class CollectionDAO {
-    async getCollectionsByUserId(userId: string): Promise<Array<Collection>> {
+    async getCollectionsByUserId(
+        user: Types.ObjectId
+    ): Promise<Array<Collection>> {
         try {
-            const collections = await CollectionModel.find({ userId });
+            const collections = await CollectionModel.find({ user }).populate(
+                "restaurants"
+            );
             if (!collections) {
                 throw new GenericError(Errors.COLLECTION_NOT_FOUND_ERR, 404);
             }

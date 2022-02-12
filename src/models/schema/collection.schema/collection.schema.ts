@@ -8,11 +8,11 @@ const collectionSchema = new mongoose.Schema<Collection>({
     name: {
         type: String,
     },
-    userId: {
+    user: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "User",
     },
-    restautants: [
+    restaurants: [
         {
             type: mongoose.Schema.Types.ObjectId,
             ref: RestaurantModel,

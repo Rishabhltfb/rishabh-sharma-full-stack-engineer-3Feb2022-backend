@@ -1,5 +1,6 @@
 import express, { Request, Response } from "express";
 import expressAsyncHandler from "express-async-handler";
+import logger from "../../config/logger";
 import passport from "../../config/passport";
 import AuthResponse from "../../models/types/auth.types/auth-response";
 import AuthTokenPayload from "../../models/types/auth.types/auth-token-payload";

@@ -34,7 +34,7 @@ export default class RestaurantDAO {
 
     async getRestaurantByName(name: string): Promise<Array<Restaurant>> {
         try {
-            var nameRegex = new RegExp(String(name));
+            var nameRegex = new RegExp(String(name), "i");
 
             const restaurants: Array<Restaurant> = await RestaurantModel.find({
                 restaurantName: { $regex: nameRegex },
