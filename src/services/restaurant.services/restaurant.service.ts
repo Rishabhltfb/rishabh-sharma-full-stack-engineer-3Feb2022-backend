@@ -8,8 +8,8 @@ export default class RestaurantService {
 
     private restaurantDAO;
 
-    getAllRestaurants(): Promise<Array<Restaurant>> {
-        return this.restaurantDAO.getAllRestaurants();
+    getRestaurants(page: number, perPage: number): Promise<Array<Restaurant>> {
+        return this.restaurantDAO.getRestaurants(page, perPage);
     }
 
     createRestaurant(restaurantBody: Restaurant): Promise<void> {

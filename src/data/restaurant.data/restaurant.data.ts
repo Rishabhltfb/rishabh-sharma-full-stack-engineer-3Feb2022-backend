@@ -1,5 +1,6 @@
 /* eslint-disable no-await-in-loop */
 import { Mongoose } from "mongoose";
+import logger from "../../config/logger";
 import Errors from "../../enums/errors";
 import GenericError from "../../models/dto/generic/generic-error";
 import RestaurantModel from "../../models/schema/restaurant.schema/restaurant.schema";
@@ -8,9 +9,14 @@ import Restaurant from "../../models/types/restaurant.types/restaurant.type";
 const mongoose = new Mongoose();
 
 export default class RestaurantDAO {
-    async getAllRestaurants(): Promise<Array<Restaurant>> {
+    async getRestaurants(
+        page: number,
+        perPage: number
+    ): Promise<Array<Restaurant>> {
         try {
-            const restaurants: Array<Restaurant> = await RestaurantModel.find();
+            const restaurants: Array<Restaurant> = await RestaurantModel.find()
+                .limit(perPage)
+                .skip((page - 1) * perPage);
             if (!restaurants) {
                 throw new GenericError(Errors.RESTAURANT_NOT_FOUND_ERR, 404);
             }

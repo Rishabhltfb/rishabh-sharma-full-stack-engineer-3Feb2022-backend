@@ -12,10 +12,12 @@ const restaurantService = new RestaurantService();
 
 //Endpoint for fetching all the restaurant data
 router.get(
-    "/all",
+    "",
     passport.authenticateAll,
     expressAsyncHandler(async (req: Request, res: Response) => {
-        let result = await restaurantService.getAllRestaurants();
+        let page: number = Number(req.query.page ?? 1);
+        let perPage: number = Number(req.query.perPage ?? 20);
+        let result = await restaurantService.getRestaurants(page, perPage);
         return res.send(
             responseAdapter.sendSuccessResponse(
                 "Successfully fetched restaurants list.",
