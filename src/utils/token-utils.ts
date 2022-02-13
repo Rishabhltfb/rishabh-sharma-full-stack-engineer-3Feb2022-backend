@@ -58,6 +58,7 @@ export default class TokenUtils {
                 }
             )) as JwtPayload;
             return {
+                tokenId: payload.tokenId,
                 email: payload.email,
                 userId: payload.userId,
             } as AuthTokenPayload;
