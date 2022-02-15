@@ -23,12 +23,19 @@ A [mobile application](https://github.com/Rishabhltfb/rishabh-sharma-full-stack-
 - [TypeScript](https://www.typescriptlang.org/) as programming language.
 
 
-## Note:
+## Instructions:
 - To run the backend server, follow the steps below:
   - clone this repository and install node/npm, docker in your system.
-  - Copy .env.sample content in your own .env file and customize it according to your environment.
-  - type command `npm run dev` in project directory terminal.
+  - Create .env file in the root directory, Copy .env.sample content paste in your .env file and customize it according to your environment.
+  - Use these env configs if you don't have yours already setup 
+          `MONGODB_URI=mongodb+srv://rishabh:iamrishabh@cluster0.pwhyr.mongodb.net/restaurantsDb?retryWrites=true&w=majority`
+          `JWT_SECRET_KEY=THIS_IS_MY_CUSTOM_JWT_KEY`
+          `REFRESH_TOKEN_SECRET_KEY=THIS_IS_MY_OWN_KEY`
+  - Install dependencies using command `npm install`
+  - In order to run server, type command `npm run dev` in project directory terminal.
   - You can also use docker to generate your project image and run it.
+  - Build docker image using command `docker build -t server .`
+  - Run docker image using command `docker run -it -p 5100:5100 server`
 
 ### Deployment Links:
 [APK](https://drive.google.com/file/d/1oTMrcZLVYaXciOFsjebVnoxf0Z9b8GiY/view?usp=sharing)
